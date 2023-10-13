@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Match update form</title>
+</head>
+<body>
+<div class="container">
+    <h3>MatchOdd Properties</h3>
+    <hr>
+    <p th:if="${matchOdd.id == 0}" class="h4 mb-4">New matchOdd</p>
+    <form action="#" th:action="@{/matchOdd/save}" th:object="${matchOdd}" method="post">
+        <input id="matchOddIdp" type="hidden" th:field="*{id}">
+        <label id="matchOddMatchID" for="matchOddMatchIDInput">Match ID: </label>
+        <input id="matchOddMatchIDInput" class="form-control mb-4 w-25" th:field="*{match.id}" readonly>
+        <label for="matchOddSpecifier">Specifier: </label>
+        <input id="matchOddSpecifier" th:field="*{specifier}" class="form-control mb-4 w-25" placeholder="">
+        <label for="matchOddOdd">Odd: </label>
+        <input id="matchOddOdd" th:field="*{odd}" class="form-control mb-4 w-25" placeholder="">
+
+        <button id="saveButton" type="submit" class="btn btn-info col-2" style="margin-top: 20px">Update</button>
+        <script>let matchOddId = document.getElementById("matchOddIdp").value;
+            if (matchOddId == 0){
+                document.getElementById("saveButton").innerText = 'Save';
+            }
+        </script>
+    </form>
+    <hr>
+    <a th:href="@{/match/update(matchId=${matchOdd.getMatch().getId()})}">Back to Match</a>
+</div>
+</body>
+</html>

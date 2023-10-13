@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Match update form</title>
+</head>
+<body>
+<div class="container">
+    <h3>Match Properties</h3>
+    <hr>
+    <p th:if="${match.id == 0}" class="h4 mb-4">New match</p>
+    <form action="#" th:action="@{/match/save}" th:object="${match}" method="post">
+        <input id="matchIdp" type="hidden" th:field="*{id}">
+        <label id="matchDescriptionLabel" for="matchDescriptionLabel">match Description: </label>
+        <input id="matchDescriptionInput"  class="form-control mb-4 w-25" th:field="*{description}">
+        <label for="matchTypeName">match Date: </label>
+        <input id="matchTypeName" type="date" th:field="*{matchDate}" class="form-control mb-4 w-25" placeholder="">
+        <label for="matchTime">match Time: </label>
+        <input id="matchTime" name="Max: " type="time" th:field="*{matchTime}" class="form-control mb-4 w-25" placeholder="">
+        <label for="matchTeamA">TeamA: </label>
+        <input id="matchTeamA" name="TeamA: " type="text" th:field="*{teamA}" class="form-control mb-4 w-25" placeholder="TeamA">
+        <label for="matchTeamB">TeamB: </label>
+        <input id="matchTeamB" name="TeamB: " type="text" th:field="*{teamB}" class="form-control mb-4 w-25" placeholder="TeamB">
+        <label for="sportTypeID">Sport type ID: </label>
+        <input id="sportTypeID" name="Sport type: " type="text" th:field="*{sport}" class="form-control mb-4 w-25" placeholder="sport type">
+        <button id="saveButton" type="submit" class="btn btn-info col-2" style="margin-top: 20px">Update</button>
+        <script>let sportTypeIDInput = document.getElementById("sportTypeID"),matchTypeIdInputLabel = document.getElementById("matchTypeIdInputLabel");
+        if (document.getElementById("matchIdp").value == 0){
+            document.getElementById("saveButton").innerText = "Save";
+        }
+        </script>
+        <div th:if="${match.id > 0}">
+        <hr>
+        <h3>Match Odds Properties</h3>
+            <table class="table"  style="width: 800px;">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Match Id</th>
+                    <th scope="col">Specifier</th>
+                    <th scope="col">Odd</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="matchOddRec : ${match.getMatchOdds()}">
+                    <td th:text="${matchOddRec.getId()}" />
+                    <td th:text="${matchOddRec.getMatch().getId()}" />
+                    <td th:text="${matchOddRec.getSpecifier()}" />
+                    <td th:text="${matchOddRec.getOdd()}" />
+                    <td><a th:href="@{/matchOdd/update(matchOddId=${matchOddRec.getId()})}" class="btn btn-info btn-sm">Update</a>
+                        <a th:href="@{/matchOdd/delete(matchOddId=${matchOddRec.getId()})}" class="btn btn-danger btn-sm"
+                           onclick="if (!(confirm('Are you sure you want to delete this matchRecord?'))) return false">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/matchOdd/matchOddAddForm(matchId=${match.id})}" class="btn btn-success btn-sm" style="margin-left: 10px">Add New MatchOdd</a>
+        </div>
+    </form>
+    <hr>
+    <a th:href="@{/}">Back to Match List</a>
+</div>
+</body>
+</html>
