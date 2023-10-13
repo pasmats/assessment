@@ -1,0 +1,308 @@
+openapi: "3.0.3"
+info:
+  title: "assessment API"
+  description: "assessment API"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8585/"
+paths:
+  /:
+    get:
+      summary: "GET "
+      operationId: "showHome"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /match/delete:
+    get:
+      summary: "GET match/delete"
+      operationId: "deleteMatch"
+      parameters:
+        - name: "matchId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /match/matchAddForm:
+    get:
+      summary: "GET match/matchAddForm"
+      operationId: "matchAddForm"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /match/save:
+    post:
+      summary: "POST match/save"
+      operationId: "saveMatch"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /match/update:
+    get:
+      summary: "GET match/update"
+      operationId: "updateMatch"
+      parameters:
+        - name: "matchId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /matchOdd/delete:
+    get:
+      summary: "GET matchOdd/delete"
+      operationId: "deleteMatchOdd"
+      parameters:
+        - name: "matchOddId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /matchOdd/matchOddAddForm:
+    get:
+      summary: "GET matchOdd/matchOddAddForm"
+      operationId: "matchOddAddForm"
+      parameters:
+        - name: "matchId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /matchOdd/save:
+    post:
+      summary: "POST matchOdd/save"
+      operationId: "saveMatchOdd"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /matchOdd/update:
+    get:
+      summary: "GET matchOdd/update"
+      operationId: "updateMatchOdd"
+      parameters:
+        - name: "matchOddId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /api/match:
+    get:
+      summary: "GET api/match"
+      operationId: "updateRecMatch"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Match"
+    post:
+      summary: "POST api/match"
+      operationId: "updateMatch"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Match"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Match"
+  /api/match/{matchId}:
+    get:
+      summary: "GET api/match/{matchId}"
+      operationId: "getMatchById"
+      parameters:
+        - name: "matchId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Match"
+    delete:
+      summary: "DELETE api/match/{matchId}"
+      operationId: "deleteMatch"
+      parameters:
+        - name: "matchId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /api/matchOdd:
+    get:
+      summary: "GET api/matchOdd"
+      operationId: "getAllMatchOdds"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/MatchOdd"
+    post:
+      summary: "POST api/matchOdd"
+      operationId: "updateMatchOdd"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchOdd"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MatchOdd"
+  /api/matchOdd/{matchOddId}:
+    get:
+      summary: "GET api/matchOdd/{matchOddId}"
+      operationId: "getMatchOddById"
+      parameters:
+        - name: "matchOddId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MatchOdd"
+    delete:
+      summary: "DELETE api/matchOdd/{matchOddId}"
+      operationId: "deleteMatchOdd"
+      parameters:
+        - name: "matchOddId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+components:
+  schemas:
+    Match:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        description:
+          type: "string"
+        matchDate:
+          type: "string"
+          format: "date"
+        matchTime:
+          type: "string"
+          format: "partial-time"
+        teamA:
+          type: "string"
+        teamB:
+          type: "string"
+        sport:
+          type: "string"
+          enum:
+            - "Basketball"
+            - "Football"
+    MatchOdd:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int32"
+        match:
+          $ref: "#/components/schemas/Match"
+        specifier:
+          type: "string"
+        odd:
+          type: "number"
+          format: "double"
