@@ -37,7 +37,7 @@ public class DemoRestController {
     @PostMapping("/matchOdd")
     public MatchOdd updateMatchOdd(@RequestBody MatchOdd matchOdd){
         if (matchOdd.getId()==null || matchOdd.getId() < 0){
-            matchOdd.setId(0); // ensure that will be saved instead of updated
+            matchOdd.setId(0); // ensure variable is correctly initialised
         }
         return matchOddsService.save(matchOdd);
     }
@@ -61,7 +61,7 @@ public class DemoRestController {
     @PostMapping("/match")
     public Match updateMatch(@RequestBody Match theMatch){
         if (theMatch.getId() == null || theMatch.getId() < 0){
-            theMatch.setId(0); // ensure that will be saved instead of updated
+            theMatch.setId(0); // ensure variable is correctly initialised
         }
         return matchService.save(theMatch);
     }

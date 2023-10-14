@@ -35,7 +35,6 @@ public class Match {
 
     @Column(name = "sport")
     @Enumerated(EnumType.STRING)
-    //@ColumnTransformer(write="?::sport_type ")
     private Sport sport;
 
     @OneToMany(mappedBy = "match",fetch = FetchType.LAZY)

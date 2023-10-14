@@ -65,7 +65,7 @@ public class DemoWebController {
         Match match = matchService.findById(matchOdd.getMatch().getId());
         matchOdd.setMatch(match);
         if (matchOdd.getId() == null || matchOdd.getId() < 0){
-            matchOdd.setId(0); // ensure will save instead of update
+            matchOdd.setId(0); // ensure variable is correctly initialised
         }
         matchOddsService.save(theMatchOdd);
         redirectAttributes.addAttribute("matchId", matchOdd.getMatch().getId());
