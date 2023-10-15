@@ -36,7 +36,7 @@ public class Match {
     @Enumerated(EnumType.STRING)
     private Sport sport;
 
-    @OneToMany(mappedBy = "match",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "match",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private List<MatchOdd> matchOdds = new ArrayList<>();
 
