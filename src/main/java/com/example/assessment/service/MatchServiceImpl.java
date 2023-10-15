@@ -2,9 +2,7 @@ package com.example.assessment.service;
 
 import com.example.assessment.dao.MatchRepository;
 import com.example.assessment.entity.Match;
-import com.example.assessment.entity.MatchOdd;
 import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

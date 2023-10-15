@@ -3,7 +3,6 @@ package com.example.assessment.entity;
 import com.example.assessment.enumType.Sport;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnTransformer;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -2,7 +2,6 @@ package com.example.assessment.controllers;
 
 import com.example.assessment.entity.Match;
 import com.example.assessment.entity.MatchOdd;
-import com.example.assessment.enumType.Sport;
 import com.example.assessment.service.MatchOddsService;
 import com.example.assessment.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
